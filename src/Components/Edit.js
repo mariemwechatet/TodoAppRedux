@@ -1,13 +1,14 @@
 
 import { Button, Modal } from 'react-bootstrap'
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { editTask } from '../redux/action'
 
 const Edit = ({ task }) => {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleShow = (e) => {e.preventDefault()
+    setShow(true)}
 
   const [consto, setConsto] = useState(task.Description)
 
@@ -32,7 +33,7 @@ const Edit = ({ task }) => {
           </Button>
           <Button
             variant="primary"
-            onClick={() => {
+            onClick={(e) => {e.preventDefault()
               dispatch(editTask(task.id, consto))
               handleClose()
             }}
